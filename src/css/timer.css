@@ -19,11 +19,18 @@ p {
 
 a {
   color: #333;
+  margin-bottom: 20px;
   text-decoration: none;
+  max-width: 150px;
+  padding: 8px 12px;
+  border-radius: 320px;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 a:hover {
-  text-decoration: underline;
+  box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
 }
 
 #datetime-picker {

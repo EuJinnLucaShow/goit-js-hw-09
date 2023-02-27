@@ -10,6 +10,47 @@ body {
   background-color: #fafafa;
   color: #212121;
   line-height: 1.5;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 15s ease infinite;
+  -moz-animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@-moz-keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 img {
@@ -17,3 +58,53 @@ img {
   max-width: 100%;
 }
 
+ul {
+  list-style-type: '\1F3A8';
+}
+
+iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+form {
+  margin: auto; /* Встановлює відступи з усіх сторін */
+  width: 50%; /* Встановлює ширину форми */
+}
+
+.nav-item {
+  margin-top: 30px;
+}
+
+.nav-link {
+  margin-bottom: 20px;
+  text-decoration: none;
+
+  max-width: 150px;
+  padding: 8px 12px;
+
+  border-radius: 320px;
+
+  background-color: transparent;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  /* box-shadow: -5px -5px 20px #fff, 5px 5px 20px #babecc;
+  transition: all 0.2s ease-in-out; */
+}
+
+.nav-link:hover {
+  box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
+}
+
+.nav-link:active {
+  box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+}
+
+.simple-lightbox .sl-caption {
+  background-color: transparent !important;
+  font-size: 1.5rem !important;
+}

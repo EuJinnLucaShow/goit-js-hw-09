@@ -1,0 +1,54 @@
+/* Reset some default styles */
+/* Style the "Go back" link */
+a {
+  color: #333;
+  margin-bottom: 20px;
+  text-decoration: none;
+  max-width: 150px;
+  padding: 8px 12px;
+  border-radius: 320px;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+a:hover {
+  box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
+}
+
+/* Style the form */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+/* Style the labels and inputs inside the form */
+label {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+label > input[type='number'] {
+  margin-top: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style the "Create promises" button */
+button[type='submit'] {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #0077cc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type='submit']:hover {
+  background-color: #005fa3;
+}

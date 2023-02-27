@@ -19,7 +19,7 @@ import Notiflix from 'notiflix';
         if (remainingTime < 0) {
           clearInterval(countdownInterval);
           startButton.disabled = true;
-          Notiflix.Report.info('Info', 'Countdown complete', 'Ok');
+          Notiflix.Report.info('Info', 'Countdown complete. Choose a date.', 'Ok');
           return;
         }
 
@@ -40,8 +40,7 @@ import Notiflix from 'notiflix';
     startButton.disabled = true;
   };
 
-  dateTimePicker.flatpickr({
-  enableTime: true,
+  flatpickr(dateTimePicker, {enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
@@ -53,11 +52,10 @@ import Notiflix from 'notiflix';
         Notiflix.Report.failure('Fail', 'Please choose a date in the future', 'Try again');
         startButton.disabled = true;
       } else {
-        Notiflix.Report.success('Success', 'The selected date is in the future', 'Go');
+        Notiflix.Report.success('Success', 'The selected date is in the future. Click Start', 'Lets go!');
         startButton.disabled = false;
       }
-    }
-  });
+    }});
 
   startButton.addEventListener('click', startCountdown);
 

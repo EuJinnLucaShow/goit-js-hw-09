@@ -1,47 +1,61 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
-// import Notiflix from 'notiflix';
-// import "dist/notiflix-aio-3.2.6.min.js"
 
-const datetimeInput = document.querySelector('input#datetime-picker');
-const startBtn = document.querySelector('button[data-start]');
-const daysSpan = document.querySelector('span[data-days]');
-const hoursSpan = document.querySelector('span[data-hours]');
-const minutesSpan = document.querySelector('span[data-minutes]');
-const secondsSpan = document.querySelector('span[data-seconds]');
+      const dateTimePicker = document.getElementById('datetime-picker');
+      const startButton = document.querySelector('[data-start]');
+      const daysField = document.querySelector('[data-days]');
+      const hoursField = document.querySelector('[data-hours]');
+      const minutesField = document.querySelector('[data-minutes]');
+      const secondsField = document.querySelector('[data-seconds]');
 
-flatpickr(datetimeInput, {
+      let countdownInterval;
+      let targetDate;
+
+      const updateTimer = () => {
+        const currentDate = new Date();
+        const remainingTime = targetDate - currentDate;
+
+        if (remainingTime < 0) {
+          clearInterval(countdownInterval);
+          startButton.disabled = false;
+          alert('Please choose a date in the future');
+          return;
+        }
+
+        const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+        const hours = Math.floor((remainingTime / (1000 * 60 * 60)) % 24).toString().padStart(2, '0');
+        const minutes = Math.floor((remainingTime / 1000 / 60) % 60).toString().padStart(2, '0');
+        const seconds = Math.floor((remainingTime / 1000) % 60).toString().padStart(2, '0');
+
+        daysField.textContent = days;
+        hoursField.textContent = hours;
+        minutesField.textContent = minutes;
+        secondsField.textContent = seconds;
+};
+
+  const startCountdown = () => {
+    targetDate = new Date(dateTimePicker.value);
+    countdownInterval = setInterval(updateTimer, 1000);
+    startButton.disabled = true;
+  };
+
+  dateTimePicker.flatpickr({
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
-  onClose(selectedDates) {
-    console.log(selectedDates[0]);
-  },});
+     onClose(selectedDates) {
+      // Обробка вибраної дати
+      const selectedDate = selectedDates[0];
+      const now = new Date();
+      if (selectedDate < now) {
+        window.alert("Please choose a date in the future");
+        startButton.disabled = true;
+      } else {
+        startButton.disabled = false;
+      }
+    }
+  });
 
-  function convertMs(ms) {
-  // Number of milliseconds per unit of time
-  const second = 1000;
-  const minute = second * 60;
-  const hour = minute * 60;
-  const day = hour * 24;
+  startButton.addEventListener('click', startCountdown);
 
-  // Remaining days
-  const days = Math.floor(ms / day);
-  // Remaining hours
-  const hours = Math.floor((ms % day) / hour);
-  // Remaining minutes
-  const minutes = Math.floor(((ms % day) % hour) / minute);
-  // Remaining seconds
-  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
-
-  return { days, hours, minutes, seconds };
-}
-
-// console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-// console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-// console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
-
-startBtn.addEventListener("click", () => {    
-  const time = convertMs(); 
-});

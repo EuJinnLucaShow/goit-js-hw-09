@@ -19,6 +19,7 @@ import Notiflix from 'notiflix';
         if (remainingTime < 0) {
           clearInterval(countdownInterval);
           startButton.disabled = true;
+          dateTimePicker.disabled = false;
           Notiflix.Report.info('Info', 'Countdown complete. Choose a date.', 'Ok');
           return;
         }
@@ -37,7 +38,8 @@ import Notiflix from 'notiflix';
   const startCountdown = () => {
     targetDate = new Date(dateTimePicker.value);
     countdownInterval = setInterval(updateTimer, 1000);
-    startButton.disabled = true;
+    startButton.disabled = true;  
+    dateTimePicker.disabled = true;
   };
 
   flatpickr(dateTimePicker, {enableTime: true,
@@ -49,11 +51,11 @@ import Notiflix from 'notiflix';
       const selectedDate = selectedDates[0];
       const now = new Date();
       if (selectedDate < now) {
-        Notiflix.Report.failure('Fail', 'Please choose a date in the future', 'Try again');
+        Notiflix.Report.failure('Fail', 'Please choose a date in the future', 'Try again');        
         startButton.disabled = true;
       } else {
         Notiflix.Report.success('Success', 'The selected date is in the future. Click Start', 'Lets go!');
-        startButton.disabled = false;
+        startButton.disabled = false;        
       }
     }});
 

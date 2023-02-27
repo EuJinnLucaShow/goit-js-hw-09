@@ -1,5 +1,6 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import Notiflix from 'notiflix';
 
       const dateTimePicker = document.getElementById('datetime-picker');
       const startButton = document.querySelector('[data-start]');
@@ -17,8 +18,8 @@ import "flatpickr/dist/flatpickr.min.css";
 
         if (remainingTime < 0) {
           clearInterval(countdownInterval);
-          startButton.disabled = false;
-          alert('Please choose a date in the future');
+          startButton.disabled = true;
+          Notiflix.Report.info('Info', 'Countdown complete', 'Ok');
           return;
         }
 
@@ -49,9 +50,10 @@ import "flatpickr/dist/flatpickr.min.css";
       const selectedDate = selectedDates[0];
       const now = new Date();
       if (selectedDate < now) {
-        window.alert("Please choose a date in the future");
+        Notiflix.Report.failure('Fail', 'Please choose a date in the future', 'Try again');
         startButton.disabled = true;
       } else {
+        Notiflix.Report.success('Success', 'The selected date is in the future', 'Go');
         startButton.disabled = false;
       }
     }

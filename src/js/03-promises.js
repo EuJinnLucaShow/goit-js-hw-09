@@ -9,13 +9,17 @@ form.addEventListener('submit', (event) => {
   const step = parseInt(form.elements.step.value);
   const amount = parseInt(form.elements.amount.value);
 
+ if (amount <= 0 || step < 0 || delay < 0) {
+    return Notiflix.Report.warning('Alert', 'Field values must not be < 0 and field "Amount" <= 0', 'Try again');
+  }
+
   for (let i = 0; i < amount; i++) {
     createPromise(i, delay + step * i)
       .then(({ position, delay }) => {
         Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
       .catch(({ position, delay }) => {
-        Notiflix.Notify.success(`❌ Rejected promise ${position} in ${delay}ms`);
+        Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
   }
 });

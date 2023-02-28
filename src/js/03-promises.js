@@ -10,7 +10,7 @@ form.addEventListener('submit', (event) => {
   const amount = parseInt(form.elements.amount.value);
 
  if (amount <= 0 || step < 0 || delay < 0) {
-    return Notiflix.Report.warning('Alert', 'Field values must not be < 0 and field "Amount" <= 0', 'Try again');
+    return Notiflix.Report.warning('Alert', 'Field values must be > 0', 'Try again');
   }
 
   for (let i = 0; i < amount; i++) {
